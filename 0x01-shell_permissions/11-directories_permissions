@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo chmod -R a-rwX,u=rwX,g=rX,a+X
+sudo chmod -R a-rwX,u=rwX,g=rX,a+X*
