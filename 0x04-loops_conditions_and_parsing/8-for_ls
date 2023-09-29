@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# This script desplays content of the current directory without the first numbers
+
+list="$(ls)"
+for files in $list
+do
+	echo "$files" | cut -d "-" -f2
+done
