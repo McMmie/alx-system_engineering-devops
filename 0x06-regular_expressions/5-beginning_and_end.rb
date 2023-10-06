@@ -1,2 +1,2 @@
 #!/usr/bin/env ruby
-puts ARGV[0].scan(/^.{3}$/i).join
+puts ARGV[0].scan(/^\w{3}$/).join
