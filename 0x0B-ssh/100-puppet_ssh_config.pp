@@ -1,5 +1,5 @@
 # setting up my ssh client to connect without using a password
-file_line { 'identity file':
+file_line { 'Declare identity file':
   ensure => present,
   path   => '/etc/ssh/sshd_config',
   line   => 'IdentityFile ~/.ssh/school',
