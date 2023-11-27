@@ -3,7 +3,7 @@ file_line { 'identity file':
   ensure => present,
   path   => '/etc/ssh/sshd_config',
   line   => 'IdentityFile ~/.ssh/school',
-  match  => '^AuthorizedKeysFile',
+  match  => '^IdentityFile',
 }
 file_line { 'Turn off passwd auth':
   ensure => present,
