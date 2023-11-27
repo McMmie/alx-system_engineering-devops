@@ -1,17 +1,13 @@
 # setting up my ssh client to connect without using a password
-package { 'openssh':
-  ensure => 'present',
+file_line { 'identity file':
+  ensure => 'present'
+  path   => '/etc/ssh/sshd_config',
+  line   => 'AuthorizedKeysFile ~/.ssh/school',
+  match  => '^AuthorizedKeysFile',
 }
-
-service { 'sshd':
-  ensure  => 'running',
-  require => Package['openssh'],
-}
-
 file_line { 'Turn off passwd auth':
-  path    => '/etc/ssh/sshd_config',
-  line    => 'PasswordAuthentication no',
-  match   => '^#?PasswordAuthentication',
-  notify  => Service['sshd'],
-  require => Package['openssh'],
+  ensure => 'present'
+  path   => '/etc/ssh/sshd_config',
+  line   => 'PasswordAuthentication no',
+  match  => '^#?PasswordAuthentication',
 }
