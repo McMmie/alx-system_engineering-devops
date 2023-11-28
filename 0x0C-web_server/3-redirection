@@ -1,16 +1,11 @@
 #!/usr/bin/env bash
 # redirects to another page
 
-sudo apt update
-sudo apt -y install nginx
+PGREDIRECT="\\\tlocation /redirect_me {\n\t\t return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}\n"
 
-nginx_conf='/etc/nginx/nginx.conf'
-redirect_url='https://www.youtube.com/watch?v=QH2-TGUlwu4'
-sed -i "/server_name/ {
-    N
-    /\n[[:space:]]*}/ i \\
-    \ \ \ \ location \/redirect\/ \{ \\
-    \ \ \ \ \ \ \ \ return 301 Moved Permanently$redirect_url; \\
-    \ \ \ \ \}" "$nginx_conf"
+sudo apt-get update
+sudo apt-get -y install nginx
 
+echo "Hello World!" | sudo tee /var/www/html/index.html
+sudo sed -i "30i $PGREDIRECT" /etc/nginx/sites-available/default
 service nginx start
