@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# redirects to another page
+
+sudo apt update
+sudo apt -y install nginx
+
+nginx_conf='/etc/nginx/nginx.conf'
+redirect_url='https://www.youtube.com/watch?v=QH2-TGUlwu4'
+sed -i "/server_name/ {
+    N
+    /\n[[:space:]]*}/ i \\
+    \ \ \ \ location \/redirect\/ \{ \\
+    \ \ \ \ \ \ \ \ return 301 Moved Permanently$redirect_url; \\
+    \ \ \ \ \}" "$nginx_conf"
+
+service nginx start
