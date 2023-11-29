@@ -3,7 +3,7 @@
 include nginx
 
 package { 'nginx':
-  ensure  => 'present',
+  ensure  => installed,
   require => Apt['nginx'],
 }
 nginx::resource::server { '54.237.38.25':
@@ -25,7 +25,8 @@ nginx::resource::location { '54.237.38.25/redirect_me/':
 }
 
 service { 'nginx':
-  ensure => 'running',
-  enable => true,
+  ensure  => 'running',
+  enable  => true,
+  require => Package['nginx']
 }
 
