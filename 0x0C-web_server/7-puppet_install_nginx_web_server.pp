@@ -7,7 +7,9 @@ package { 'nginx':
   require => Apt['nginx'],
 }
 nginx::resource::server { '54.237.38.25':
-  listen port => 80,
+  listen_port => 80,
+}
+
 file { '/usr/share/nginx/html/index.html':
   ensure  => present,
   content => 'Hello World',
@@ -18,7 +20,7 @@ nginx::resource::location { '54.237.38.25/redirect_me/':
   location        => '/redirect_me/',
   server          => '54.237.38.25',
   location_config => {
-    'return => 301 https://open.spotify.com/track/6PwjKdyaavh0KaOsU6KKYJ?si=395f4c65e10b4772;',
+    'return' => '301 https://open.spotify.com/track/6PwjKdyaavh0KaOsU6KKYJ?si=395f4c65e10b4772;',
   },
 }
 
