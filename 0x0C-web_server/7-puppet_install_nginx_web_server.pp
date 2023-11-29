@@ -4,13 +4,13 @@ include nginx
 
 package { 'nginx':
   ensure  => installed,
-  require => Apt['nginx'],
+  require => 'apt',
 }
 
 service { 'nginx':
   ensure  => 'running',
   enable  => true,
-  require => Package['nginx']
+
 }
 
 nginx::resource::server { '54.237.38.25':
