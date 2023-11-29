@@ -6,6 +6,13 @@ package { 'nginx':
   ensure  => installed,
   require => Apt['nginx'],
 }
+
+service { 'nginx':
+  ensure  => 'running',
+  enable  => true,
+  require => Package['nginx']
+}
+
 nginx::resource::server { '54.237.38.25':
   listen_port => 80,
 }
@@ -22,11 +29,5 @@ nginx::resource::location { '54.237.38.25/redirect_me/':
   location_config => {
     'return' => '301 https://open.spotify.com/track/6PwjKdyaavh0KaOsU6KKYJ?si=395f4c65e10b4772;',
   },
-}
-
-service { 'nginx':
-  ensure  => 'running',
-  enable  => true,
-  require => Package['nginx']
 }
 
