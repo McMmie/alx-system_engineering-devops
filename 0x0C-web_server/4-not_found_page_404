@@ -6,7 +6,6 @@ MATCH_PATTERN="=404;"
 
 sudo apt-get update
 sudo apt-get -y install nginx
-sudo service nginx start
 
 echo "Hello World!" | sudo tee /var/www/html/index.html
 sudo sed -i "30i $PGREDIRECT" /etc/nginx/sites-available/default
@@ -14,4 +13,4 @@ sudo sed -i "30i $PGREDIRECT" /etc/nginx/sites-available/default
 echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/custom_404.html
 sudo sed -i "s@$MATCH_PATTERN@$PGNOTFOUND@" /etc/nginx/sites-available/default
 
-sudo service nginx restart
+service nginx start
