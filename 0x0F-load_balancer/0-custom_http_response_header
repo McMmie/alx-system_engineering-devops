@@ -15,5 +15,5 @@ sudo sed -i "30i $PGREDIRECT" /etc/nginx/sites-available/default
 echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/custom_404.html
 sudo sed -i "s@$MATCH_PATTERN@$PGNOTFOUND@" /etc/nginx/sites-available/default
 
-sudo sed -i "27i $ADD_HEADER" /etc/nginx/sites-available/default
+sudo sed -i "27i $HEADER" /etc/nginx/sites-available/default
 sudo service nginx restart
