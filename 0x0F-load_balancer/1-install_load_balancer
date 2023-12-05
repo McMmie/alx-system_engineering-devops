@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # installing and configuring the load balancer
 
-TRAFFIC_CONF="\\\nlisten appname 0.0.0.0:80\n\tmode http\n\tbalance roundrobin\n\toption httpclose\n\toption forwardfor\n\tserver 266654-web-01 54.237.38.25 check\n\tserver 266654-web-02 100.25.152.122 check\n"
+TRAFFIC_CONF="\\\nfrontend my_frontend\n\tbind *:80\n\tmode http\n\tdefault_backend my_backend\n\nbackend my_backend\n\tmode http\n\tbalance roundrobin\n\toption httpclose\n\toption forwardfor\n\tserver 266654-web-01 54.237.38.25:80 check\n\tserver 266654-web-02 100.25.152.122:80 check"
 
 sudo apt-get update
 sudo apt-get -y install nginx
-sudo apt-get install -y haproxy=1.5\*
+sudo apt-get install -y haproxy
 
 # Make sure HAproxy can be managed via an init script
 sudo sed -i "s/ENABLED=0/ENABLED=1/" /etc/default/haproxy
@@ -14,4 +14,4 @@ sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.backup
 
 sudo sed -i "\$a $TRAFFIC_CONF" /etc/haproxy/haproxy.cfg
 
-sudo service haproxy start
+sudo service haproxy restart
