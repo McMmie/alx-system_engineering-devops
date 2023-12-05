@@ -12,20 +12,7 @@ file { '/etc/default/haproxy':
 
 # Configure HAProxy main configuration file
 file { '/etc/haproxy/haproxy.cfg':
-  content => "\
-frontend my_frontend
-  bind *:80
-  mode http
-  default_backend my_backend
-
-backend my_backend
-  mode http
-  balance roundrobin
-  option httpclose
-  option forwardfor
-  server 266654-web-01 54.237.38.25:80 check
-  server 266654-web-02 100.25.152.122:80 check
-",
+  content => "frontend my_frontend\n\tbind *:80\n\tmode http\n\tdefault_backend my_backend\n\nbackend my_backend\n\tmode http\n\tbalance roundrobin\n\toption httpclose\n\toption forwardfor\n\tserver 266654-web-01 54.237.38.25:80 check\n\tserver 266654-web-02 100.25.152.122:80 check",
   notify  => Service['haproxy'],
 }
 
@@ -43,3 +30,4 @@ package { 'nginx':
 
 # Notify the HAProxy service to restart when Nginx is installed
 Package['nginx'] -> Service['haproxy']
+
