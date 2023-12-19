@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # changes the user
 
-sudo whoami -u "$1"
+sudo -u "$1" whoami
