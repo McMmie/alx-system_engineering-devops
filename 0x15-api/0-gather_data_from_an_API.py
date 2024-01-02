@@ -21,8 +21,8 @@ def display():
         if task.get('userId') == int(argv[1]):
             TOTAL_NUM_OF_TASKS += 1
             if task.get('completed') is True:
-                    NUMBER_OF_DONE_TASKS += 1
-                    TASK_TITLE.append(task.get('title'))
+                NUMBER_OF_DONE_TASKS += 1
+                TASK_TITLE.append(task.get('title'))
     print("Employee {} is done with tasks({}/{}):".format(EMPLOYEE_NAME,
                                                           NUMBER_OF_DONE_TASKS,
                                                           TOTAL_NUM_OF_TASKS))
