@@ -3,5 +3,5 @@ $ulimit_value = "\"-n 50000\""  # Set the desired ulimit value
 
 exec { 'fix_for_nginx':
   command => "sed -i 's/^ULIMIT.*/ULIMIT=${ulimit_value}/' /etc/default/nginx",
-  path    => '/bin',  # Specify the path to the sed command
+  path    => '/usr/bin:/bin:/usr/sbin:/sbin',  # Specify the path to the sed command
 }
