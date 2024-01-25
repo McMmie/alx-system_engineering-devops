@@ -1,0 +1,11 @@
+# set a new server block
+server {
+        listen 80;
+        server_name 54.237.38.25;
+
+        # location block for all requests
+        location / {
+                include proxy_params;
+                proxy_pass http://54.237.38.25:5000;
+        }
+}
